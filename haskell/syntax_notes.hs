@@ -20,11 +20,6 @@
 --		[x*2 | x <- [1..10]]      			double each integer from 1 to 10 inclusive
 --	    [x*2 | x <- [1..10], x*2 >= 12]     double each integer where result >= 12
 --
--- learn to use map properly
---
--- map funcName sequence
---
--- e.g. map Char.toLower sentence
 --
 -- filter:
 --		funcName seqName = [conditionalStatement | iterableSource, predicate]
@@ -93,3 +88,12 @@
 -- import Module.Type     // imports all module's functions directly
 
 -- import qualified Module.Type as Type   // alias functions to force using Type.funcName ?
+
+-- learn to use map and filter properly
+--
+-- map funcName sequence
+-- filter funcName sequence
+-- filter (operator compValue) sequence
+--
+-- e.g. map Char.toLower sentence
+
