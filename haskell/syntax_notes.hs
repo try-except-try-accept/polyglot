@@ -20,6 +20,12 @@
 --		[x*2 | x <- [1..10]]      			double each integer from 1 to 10 inclusive
 --	    [x*2 | x <- [1..10], x*2 >= 12]     double each integer where result >= 12
 --
+-- learn to use map properly
+--
+-- map funcName sequence
+--
+-- e.g. map Char.toLower sentence
+--
 -- filter:
 --		funcName seqName = [conditionalStatement | iterableSource, predicate]
 --		iterableSource e.g.   item <- seqName     equivalent to     item for item in seqName
@@ -69,3 +75,21 @@
 --		|	param <logical test1> = result1
 --		|	param <logical test2> = result2
 --		|	otherwise = result3
+
+
+-- this works sort of like an enum / record
+
+-- data ParentClass : ChildClass1 |  ChildClass2 | ChildClass3 | ChildClass4 deriving (funcName)
+
+-- deriving signals inherited behaviour from other types?
+
+
+-- using case is perhaps better than guard conditions:
+
+-- case expression of pattern -> result  
+--                    pattern -> result  
+
+
+-- import Module.Type     // imports all module's functions directly
+
+-- import qualified Module.Type as Type   // alias functions to force using Type.funcName ?

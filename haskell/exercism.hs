@@ -1,4 +1,13 @@
+-- forbidden from using for pangrams task
+--import qualified Data.Set as Set
+import qualified Data.Char as Char
+
+
 -- validate leap year  
+
+
+
+
 
 isLeapYear :: Integer -> Bool
 isLeapYear year
@@ -34,4 +43,21 @@ yearsOn planet years
 
 ageOn :: Planet -> Float -> Float
 ageOn planet seconds = yearsOn planet (seconds / secondsPerYear)
+
+
+-- validate pangram
+
+getAsLowercaseChars :: String -> String
+getAsLowercaseChars string = [Char.toLower c | c <- string, Char.isAlpha c]
+
+isPangram :: String -> Bool
+
+-- not allowed to use Set
+--isPangram text = length (Set.fromList (getAsLowercaseChars text)) == 26
+
+alphabet = ['a'..'z']
+
+isPangram text = length [letter | letter <- alphabet, elem letter (getAsLowercaseChars text)] == 26
+
+
 
