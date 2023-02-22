@@ -2,12 +2,9 @@
 --import qualified Data.Set as Set
 import Data.Char
 
-
+-------------------------------------------------------------
 -- validate leap year  
-
-
-
-
+-------------------------------------------------------------
 
 isLeapYear :: Integer -> Bool
 isLeapYear year
@@ -15,7 +12,9 @@ isLeapYear year
   | mod year 100 > 0 || mod year 400 == 0 = True
   | otherwise = False
   
+-------------------------------------------------------------
 -- calculate age on given planet
+-------------------------------------------------------------
   
 data Planet = Mercury
             | Venus
@@ -44,8 +43,9 @@ yearsOn planet years
 ageOn :: Planet -> Float -> Float
 ageOn planet seconds = yearsOn planet (seconds / secondsPerYear)
 
-
+-------------------------------------------------------------
 -- validate pangram
+-------------------------------------------------------------
 
 getAsLowerCaseChars :: String -> String
 
@@ -67,4 +67,29 @@ isPangram :: String -> Bool
 isPangram text = length (filter (`elem` (getAsLowerCaseChars text)) ['a'..'z']) == 26
 
 
+-------------------------------------------------------------
+-- lackadaisical teenager bob
+-------------------------------------------------------------
+
+isQuestion :: String -> Bool
+isYelled :: String -> Bool
+isBlank :: String -> Bool
+isQuestion xs = last xs == '?'
+-- must be a better way to write this....
+isYelled xs = xs /= "?" && all isUpper (filter isAlpha xs) && length (filter isAlpha xs) > 0
+isBlank xs = length xs == 0
+
+processResponse :: String -> String
+processResponse xs
+    | isBlank xs = "Fine. Be that way!" --if you address him without actually saying anything.
+    | isQuestion xs && isYelled xs = "Calm down, I know what I'm doing!" --if you yell a question at him.
+    | isQuestion xs = "Sure." --if you ask him a question, such as "How are you?".
+    | isYelled xs = "Whoa, chill out!" --if you YELL AT HIM (in all capitals).	    
+    | otherwise = "Whatever." --to anything else.
+	
+extractNeeded :: String -> String
+extractNeeded xs = filter (not . isSpace) xs
+
+responseFor :: String -> String
+responseFor xs = processResponse (extractNeeded xs)
 

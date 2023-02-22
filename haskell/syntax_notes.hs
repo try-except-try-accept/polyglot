@@ -97,3 +97,9 @@
 --
 -- e.g. map Char.toLower sentence
 
+
+-- when function is passed as arguments you can combine multiple functions with the dot operator (function composition)
+
+-- example :
+
+-- filter (not . isSpace) xs          // finds all non-space elements of xs
