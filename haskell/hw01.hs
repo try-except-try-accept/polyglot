@@ -29,6 +29,43 @@
 -- 
 -- map (operation) sequence
 
+
+-- always give type dec for function
+
+-- 		funcName :: Type - Type
+
+-- funcName :: (paramClass param) => param -> returnType        use if param is a class, not a type
+
+-- valid types: String, Int, Float, Bool, Char, [Type]
+
+-- typecasting read "stringvalue" || Type
+
+
+-- case statement sort of thing as function ("pattern matching")
+
+--funcName :: paramClass - returnType
+
+-- funcName :: (paramClass param) => param -> returnType
+-- funcName case1 = result1
+-- funcName case2 = result2
+-- funcName case3 = result3
+
+-- pattern matching list comprehension example
+
+-- ghci> let xs = [(1,3), (4,3), (2,4), (5,3), (5,6), (3,1)]  
+-- ghci> [a+b | (a,b) <- xs]  
+-- [4,7,6,8,11,4]   
+
+
+
+-- "guard" = pattern matching based on condition
+
+-- funcName :: (paramType param) => param -> returnType
+-- funcName param
+--		|	param <logical test1> = result1
+--		|	param <logical test2> = result2
+--		|	otherwise = result3
+
 --Exercise 1 We need to first find the digits of a number. Define the functions
 --toDigits :: Integer -> [Integer]
 --toDigitsRev :: Integer -> [Integer]
@@ -42,5 +79,14 @@
 
 -- find largest power of 10 that fits
 
-digs 0 = []
-digs x = digs (div x 10) ++ [mod x 10]
+
+intToDigitList :: Int -> [Int]
+intToDigitList 0 = []
+intToDigitList x = intToDigitList (div x 10) ++ [mod x 10] -- recursively div x by 10 until 0, concat with mod x 10
+
+convert :: Int -> [Int]
+convert x 
+ | x <= 0 = []
+ | otherwise = intToDigitList x
+
+toDigits digits = [d | d <- convert digits, d > 0]
