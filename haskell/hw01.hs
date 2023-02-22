@@ -1,14 +1,14 @@
 
 
--- everything is a definition
--- everything is immutable. no globals.
+-- everything is a function
+-- everything is immutable. no globals. no side-effects
 -- statically typed, lazy evaluation
 -- a function with no params is known as a definition (calories below is a definition, not a variable)
 -- multi-line string requires \ on each line
 -- comments begin with --
 -- ++ concat sequence
 -- : prepend one item to list	 item : a
--- max x, y, min, succ, odd, even, mod
+-- max, min, succ, odd, even, mod
 -- /= == %% ||
 -- if statement must always have an else
 -- !! subscription operator      sequence !! index
@@ -91,7 +91,7 @@ convert x
  | x <= 0 = []
  | otherwise = intToDigitList x
 
-toDigits num = [d | d <- convert num, d > 0]
+toDigits num = [d | d <- convert num]
 
 toDigitsRev num = reverse (toDigits num)
 
@@ -110,3 +110,17 @@ doubleEveryOther digits = [if (mod i 2) == 1 then d * 2 else d | (i, d) <- (revE
 sumDigits :: [Integer] -> Integer
 
 sumDigits numbers = sum [sum (toDigits num) | num <- numbers]
+
+
+-- Exercise 4 Define the function
+
+validate :: Integer -> Bool
+
+--that indicates whether an Integer could be a valid credit card number.
+--This will use all functions defined in the previous exercises.
+
+getCheckDigit :: Integer -> Integer
+
+getCheckDigit ccNum = sumDigits (doubleEveryOther (toDigits ccNum))
+
+validate ccNum = (mod (getCheckDigit ccNum) 10) == 0
