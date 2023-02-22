@@ -82,11 +82,11 @@
 
 
 
-intToDigitList :: Int -> [Int]
+intToDigitList :: Integer -> [Integer]
 intToDigitList 0 = []
 intToDigitList x = intToDigitList (div x 10) ++ [mod x 10] -- recursively div x by 10 until 0, concat with mod x 10
 
-convert :: Int -> [Int]
+convert :: Integer -> [Integer]
 convert x 
  | x <= 0 = []
  | otherwise = intToDigitList x
@@ -101,5 +101,12 @@ toDigitsRev num = reverse (toDigits num)
 
 revEnumerate seq = zip (reverse [0..length seq-1]) seq
 
-doubleEveryOther :: [Int] -> [Int]
+doubleEveryOther :: [Integer] -> [Integer]
 doubleEveryOther digits = [if (mod i 2) == 1 then d * 2 else d | (i, d) <- (revEnumerate digits)] 
+
+
+-- Exercise 3 The output of doubleEveryOther has a mix of one-digit
+-- and two-digit numbers. Define the function
+sumDigits :: [Integer] -> Integer
+
+sumDigits numbers = sum [sum (toDigits num) | num <- numbers]
