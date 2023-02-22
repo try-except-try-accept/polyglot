@@ -56,6 +56,10 @@
 -- ghci> [a+b | (a,b) <- xs]  
 -- [4,7,6,8,11,4]   
 
+-- enumerate is not a built-in, but can be redefined very beautifully:
+
+-- enumerate = zip [0..]   --   to enumerate is to zip with a 0 to infinity sequence
+
 
 
 -- "guard" = pattern matching based on condition
@@ -77,8 +81,6 @@
 --Example: toDigits (-17) == []
 
 
--- find largest power of 10 that fits
-
 
 intToDigitList :: Int -> [Int]
 intToDigitList 0 = []
@@ -89,4 +91,15 @@ convert x
  | x <= 0 = []
  | otherwise = intToDigitList x
 
-toDigits digits = [d | d <- convert digits, d > 0]
+toDigits num = [d | d <- convert num, d > 0]
+
+toDigitsRev num = reverse (toDigits num)
+
+
+-- Exercise 2 Once we have the digits in the proper order, we need to
+-- double every other one. Define a function
+
+revEnumerate seq = zip (reverse [0..length seq-1]) seq
+
+doubleEveryOther :: [Int] -> [Int]
+doubleEveryOther digits = [if (mod i 2) == 1 then d * 2 else d | (i, d) <- (revEnumerate digits)] 
