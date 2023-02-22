@@ -1,0 +1,71 @@
+
+
+-- everything is a function
+-- everything is immutable. no globals. no side-effects
+-- statically typed, lazy evaluation
+-- a function with no params is known as a definition (calories below is a definition, not a variable)
+-- multi-line string requires \ on each line
+-- comments begin with --
+-- ++ concat sequence
+-- : prepend one item to list	 item : a
+-- max, min, succ, odd, even, mod
+-- /= == %% ||
+-- if statement must always have an else
+-- !! subscription operator      sequence !! index
+-- sequence funcs: head, tail, init, last, length, reverse, take, drop, maximum, minimum, sum, product, elem (in)
+-- repeat i      -- infinite replication
+-- cycle a
+
+-- list comps / map 
+--		[x*2 | x <- [1..10]]      			double each integer from 1 to 10 inclusive
+--	    [x*2 | x <- [1..10], x*2 >= 12]     double each integer where result >= 12
+--
+-- filter:
+--		funcName seqName = [conditionalStatement | iterableSource, predicate]
+--		iterableSource e.g.   item <- seqName     equivalent to     item for item in seqName
+--		predicate = some function that takes a single argument and returns type: bool
+--
+-- map:
+-- 
+-- map (operation) sequence
+
+
+-- always give type dec for function
+
+-- 		funcName :: Type - Type
+
+-- funcName :: (paramClass param) => param -> returnType        use if param is a class, not a type
+
+-- valid types: String, Int, Float, Bool, Char, [Type]
+
+-- typecasting read "stringvalue" || Type
+
+
+-- case statement sort of thing as function ("pattern matching")
+
+--funcName :: paramClass - returnType
+
+-- funcName :: (paramClass param) => param -> returnType
+-- funcName case1 = result1
+-- funcName case2 = result2
+-- funcName case3 = result3
+
+-- pattern matching list comprehension example
+
+-- ghci> let xs = [(1,3), (4,3), (2,4), (5,3), (5,6), (3,1)]  
+-- ghci> [a+b | (a,b) <- xs]  
+-- [4,7,6,8,11,4]   
+
+-- enumerate is not a built-in, but can be redefined very beautifully:
+
+-- enumerate = zip [0..]   --   to enumerate is to zip with a 0 to infinity sequence
+
+
+
+-- "guard" = pattern matching based on condition
+
+-- funcName :: (paramType param) => param -> returnType
+-- funcName param
+--		|	param <logical test1> = result1
+--		|	param <logical test2> = result2
+--		|	otherwise = result3
