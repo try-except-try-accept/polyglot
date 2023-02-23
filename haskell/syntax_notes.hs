@@ -33,7 +33,11 @@
 
 -- always give type dec for function
 
--- 		funcName :: Type - Type
+-- 		funcName :: paramType -> returnType
+
+-- multiple params:
+
+-- 	    funcName :: param1Type -> param2Type -> returnType   // in actuality anything can only take 1 param (curried function)
 
 -- funcName :: (paramClass param) => param -> returnType        use if param is a class, not a type
 
@@ -103,3 +107,14 @@
 -- example :
 
 -- filter (not . isSpace) xs          // finds all non-space elements of xs
+
+
+-- where name = expression    // allows you to define a name inside a function to avoid repetition
+
+
+
+-- umbrella types in function declarations --- weird
+
+-- funcName :: paramType -> Maybe returnType  (allows null to be returned)
+
+-- most combine with use of Just keyword when returning strict type value...          Just returnType

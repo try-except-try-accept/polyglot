@@ -75,8 +75,7 @@ isQuestion :: String -> Bool
 isYelled :: String -> Bool
 isBlank :: String -> Bool
 isQuestion xs = last xs == '?'
--- must be a better way to write this....
-isYelled xs = xs /= "?" && all isUpper (filter isAlpha xs) && length (filter isAlpha xs) > 0
+isYelled xs = xs /= "?" && all isUpper letters && not (null letters) where letters = (filter isAlpha xs)
 isBlank xs = length xs == 0
 
 processResponse :: String -> String
@@ -93,3 +92,20 @@ extractNeeded xs = filter (not . isSpace) xs
 responseFor :: String -> String
 responseFor xs = processResponse (extractNeeded xs)
 
+
+-------------------------------------------------------------
+-- collatz conjecture
+-------------------------------------------------------------
+
+process :: Integer -> Integer -> Maybe Integer
+
+process n i
+	| n <= 0 = Nothing
+    | n == 1 = Just i
+    | even n = process (div n 2) (i+1)
+	| otherwise = process (succ (n * 3)) (i+1)
+
+-- seems like a default param value here would be helpful to avoid having to make a second function?
+collatz :: Integer -> Maybe Integer
+collatz n = process n 0    
+    
