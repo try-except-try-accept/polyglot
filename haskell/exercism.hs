@@ -109,3 +109,20 @@ process n i
 collatz :: Integer -> Maybe Integer
 collatz n = process n 0    
     
+-------------------------------------------------------------
+-- DNA to RNA
+-------------------------------------------------------------
+
+
+convert :: Char -> Char
+convert n = case n of
+    'G' -> 'C' 
+    'C' -> 'G'
+    'T' -> 'A'
+    'A' -> 'U'
+
+toRNA :: String -> Either Char String
+toRNA xs
+    | null invalid = Right (map convert xs)
+    | otherwise = Left (head invalid)
+    where invalid = filter (not . (`elem` "GCTA")) xs 
